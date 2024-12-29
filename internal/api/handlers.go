@@ -25,6 +25,7 @@ func withJSON(handler func(http.ResponseWriter, *http.Request)) http.HandlerFunc
 // Example of HTTP handler with error handling
 func (h *Handler) CreateUser(w http.ResponseWriter, r *http.Request) {
     var user models.User
+    print(r.Body)
     if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
         http.Error(w, err.Error(), http.StatusBadRequest)
         return
